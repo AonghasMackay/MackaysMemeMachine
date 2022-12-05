@@ -1,5 +1,4 @@
 /**
- * @todo add to github
  * @todo check why balance restriction isnt working. isnt it?
  * @todo add cronjob to save to leaderboard and reset users score
  * @todo add command to see leaderboard and user info (if bot is muted, number of scoreboards won, etc.)
