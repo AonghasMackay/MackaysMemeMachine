@@ -23,11 +23,14 @@ module.exports = {
 				return;
 			}
 
-			if (!users.prototype.hasPositiveBalance(reactor.id)) {
-				reactor.send(`Your points balance is too low to add or remove points from ${author.username}. It will reset at the end of the day.`);
-				console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName} but their balance is too low.`);
-				return;
-			}
+			users.prototype.hasPositiveBalance(reactor.id).then(hasPositiveBalance => {
+				if (!hasPositiveBalance) {
+					sendNegativeBalanceMessages(reactor, author, emojiName);
+					return;
+				}
+			}).catch(error => {
+				writeToLogs('ERROR', error);
+			});
 
 			try {
 				users.prototype.addScore(author.id);
@@ -53,11 +56,14 @@ module.exports = {
 				return;
 			}
 
-			if (!users.prototype.hasPositiveBalance(reactor.id)) {
-				reactor.send(`Your points balance is too low to add or remove points from ${author.username}. It will reset at the end of the day.`);
-				console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName} but their balance is too low.`);
-				return;
-			}
+			users.prototype.hasPositiveBalance(reactor.id).then(hasPositiveBalance => {
+				if (!hasPositiveBalance) {
+					sendNegativeBalanceMessages(reactor, author, emojiName);
+					return;
+				}
+			}).catch(error => {
+				writeToLogs('ERROR', error);
+			});
 
 			try {
 				users.prototype.removeScore(author.id);
@@ -73,3 +79,9 @@ module.exports = {
 		}
 	},
 };
+
+function sendNegativeBalanceMessages(reactor, author, emojiName) {
+	reactor.send(`Your points balance is too low to add or remove points from ${author.username}. It will reset at the end of the day.`);
+	console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName} but their balance is too low.`);
+	return;
+}

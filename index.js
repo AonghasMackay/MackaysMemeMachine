@@ -1,5 +1,5 @@
 /**
- * @todo check why balance restriction isnt working. isnt it?
+ * @todo cache msgs already in the discord on startup for ease of testing
  * @todo add cronjob to save to leaderboard and reset users score
  * @todo add command to see leaderboard and user info (if bot is muted, number of scoreboards won, etc.)
  * @todo add help command to show all commands and explain how bot works
