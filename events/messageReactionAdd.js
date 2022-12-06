@@ -1,5 +1,6 @@
 const { users } = require('../database/dbObjects.js');
 const { writeToLogs } = require('../logging/logging.js');
+const { DEBUG } = require('../config.json');
 
 /**
  * @todo add a check to see if user has already reacted to the meme
@@ -15,7 +16,7 @@ module.exports = {
 			const reactor = reaction.users.cache.last();
 			const author  = reaction.message.author;
 
-			if (reactor.id == author.id) {
+			if (reactor.id == author.id && !DEBUG) {
 				return;
 			}
 
@@ -27,28 +28,29 @@ module.exports = {
 				if (!hasPositiveBalance) {
 					sendNegativeBalanceMessages(reactor, author, emojiName);
 					return;
+				} else {
+
+					try {
+						users.prototype.addScore(author.id);
+						users.prototype.lowerBalance(reactor.id);
+
+						console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName}! +1 point to ${author.username}`);
+
+						author.send(`${reactor.username} reacted to your meme with ${emojiName}! +1 point.`);
+						reactor.send(`You reacted to ${author.username}'s meme with ${emojiName}! +1 point to ${author.username}`);
+					} catch (error) {
+						writeToLogs('ERROR', error);
+					}
 				}
 			}).catch(error => {
 				writeToLogs('ERROR', error);
 			});
-
-			try {
-				users.prototype.addScore(author.id);
-				users.prototype.lowerBalance(reactor.id);
-
-				console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName}! +1 point to ${author.username}`);
-
-				author.send(`${reactor.username} reacted to your meme with ${emojiName}! +1 point.`);
-				reactor.send(`You reacted to ${author.username}'s meme with ${emojiName}! +1 point to ${author.username}`);
-			} catch (error) {
-				writeToLogs('ERROR', error);
-			}
 
 		} else if (emojiName == 'MossMoment') {
 			const reactor = reaction.users.cache.last();
 			const author  = reaction.message.author;
 
-			if (reactor.id == author.id) {
+			if (reactor.id == author.id && !DEBUG) {
 				return;
 			}
 
@@ -60,22 +62,23 @@ module.exports = {
 				if (!hasPositiveBalance) {
 					sendNegativeBalanceMessages(reactor, author, emojiName);
 					return;
+				} else {
+
+					try {
+						users.prototype.removeScore(author.id);
+						users.prototype.lowerBalance(reactor.id);
+
+						console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName}! -1 point from ${author.username}`);
+
+						author.send(`${reactor.username} reacted to your meme with ${emojiName}! -1 point.`);
+						reactor.send(`You reacted to ${author.username}'s meme with ${emojiName}! -1 point from ${author.username}`);
+					} catch (error) {
+						writeToLogs('ERROR', error);
+					}
 				}
 			}).catch(error => {
 				writeToLogs('ERROR', error);
 			});
-
-			try {
-				users.prototype.removeScore(author.id);
-				users.prototype.lowerBalance(reactor.id);
-
-				console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName}! -1 point from ${author.username}`);
-
-				author.send(`${reactor.username} reacted to your meme with ${emojiName}! -1 point.`);
-				reactor.send(`You reacted to ${author.username}'s meme with ${emojiName}! -1 point from ${author.username}`);
-			} catch (error) {
-				writeToLogs('ERROR', error);
-			}
 		}
 	},
 };
