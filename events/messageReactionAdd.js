@@ -1,6 +1,6 @@
 const { users } = require('../database/dbObjects.js');
 const { writeToLogs } = require('../logging/logging.js');
-const { DEBUG } = require('../config.json');
+const { DEBUG, postiveEmoji, negativeEmoji } = require('../config.json');
 
 /**
  * @todo add a check to see if user has already reacted to the meme
@@ -12,7 +12,7 @@ module.exports = {
 	execute(reaction) {
 		const emojiName = reaction.emoji.name;
 
-		if (emojiName == 'AonLUL') {
+		if (emojiName == postiveEmoji) {
 			const reactor = reaction.users.cache.last();
 			const author  = reaction.message.author;
 
@@ -46,7 +46,7 @@ module.exports = {
 				writeToLogs('ERROR', error);
 			});
 
-		} else if (emojiName == 'MossMoment') {
+		} else if (emojiName == negativeEmoji) {
 			const reactor = reaction.users.cache.last();
 			const author  = reaction.message.author;
 
