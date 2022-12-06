@@ -4,6 +4,7 @@
  * @todo add help command to show all commands and explain how bot works
  * @todo allow bot to be muted
  * @todo comment all code
+ * @todo improve user messaging to be less intrusive and annoying
  * @todo host bot online somewhere
  * @todo restart on uncaught exception
  */
