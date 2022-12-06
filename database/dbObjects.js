@@ -96,6 +96,30 @@ Reflect.defineProperty(users.prototype, 'resetAllBalances', {
 
 		console.log('All balances reset');
 		writeToLogs('INFO', 'All balances reset');
+
+		return;
+	},
+});
+
+Reflect.defineProperty(users.prototype, 'muteBot', {
+	//for a specific user, set their silenced_bot value to true
+	value: async user_id => {
+		const user = await users.findOne({
+			where: { user_id: user_id },
+		});
+
+		if (user) {
+			if (user.silenced_bot == false) {
+				user.silenced_bot = true;
+			} else {
+				user.silenced_bot = false;
+			}
+
+			return user.save();
+		}
+
+		writeToLogs('ERROR', 'User not found in database');
+		return false;
 	},
 });
 

@@ -3,6 +3,8 @@
  * @todo add command to see leaderboard and user info (if bot is muted, number of scoreboards won, etc.)
  * @todo add help command to show all commands and explain how bot works
  * @todo allow bot to be muted
+ * @todo abstract dbObjects.js out into multiple files
+ * @todo move db connection details to config so its secure in future when no longer hosted locally
  * @todo comment all code
  * @todo improve user messaging to be less intrusive and annoying
  * @todo host bot online somewhere
