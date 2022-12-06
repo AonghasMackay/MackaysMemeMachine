@@ -27,6 +27,7 @@ const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
 createResetBalanceCronJob();
+//createLeaderboardUpdateCronJob(client);
 
 for (const file of commandFiles) {
 	const filePath = path.join(commandsPath, file);

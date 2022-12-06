@@ -3,7 +3,7 @@ const { users } = require('../database/dbObjects.js');
 const { writeToLogs } = require('../logging/logging.js');
 
 module.exports = {
-	createLeaderboardUpdateCronJob: function() {
+	createLeaderboardUpdateCronJob: function(client) {
 		const resetleaderboard = new CronJob(
 			'0 0 0 1 * *',
 			function() {
@@ -12,6 +12,10 @@ module.exports = {
 				//might be best to break this out into a seperate function in the file
 
 				// get the highest scoring user in the users table and set them as the winner for the month in the leaderboard table
+				const scoreboard = users.prototype.getScoreboard();
+				const winner = client.users.fetch(scoreboard[0].user_id);
+				const runnerUp = client.users.fetch(scoreboard[1].user_id);
+
 				// get the second highest scoring user in the users table and set them as the runner up for the month in the leaderboard table
 				// then increment the users number_of_wins by 1
 				// then reset all users score and balance

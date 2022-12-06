@@ -74,11 +74,14 @@ Reflect.defineProperty(users.prototype, 'lowerBalance', {
 });
 
 Reflect.defineProperty(users.prototype, 'getScoreboard', {
-	value: async user_id => {
+	value: async () => {
 		//order the users by score
 		const usersByScore = await users.findAll({
 			order: [['score', 'DESC']],
 		});
+
+		//wait for the users to be ordered. Bit hacky, but it works for now
+		wait(1000);
 
 		return usersByScore;
 	},
@@ -138,5 +141,10 @@ Reflect.defineProperty(users.prototype, 'isBotMuted', {
 		return false;
 	},
 });
+
+//maybe move this somewhere global
+function wait(milliseconds) {
+	return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
 
 module.exports = { users, leaderboard };
