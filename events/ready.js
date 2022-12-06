@@ -1,4 +1,5 @@
 const { writeToLogs } = require('../logging/logging');
+const { DEBUG } = require('../config.json');
 
 module.exports = {
 	name: 'ready',
@@ -6,6 +7,11 @@ module.exports = {
 	execute(client) {
 		console.log(`Ready! ${client.user.tag} is running.`);
 		writeToLogs('INFO', '\n ------------------------------------------------------------------------ \n BOT RESTARTED \n \n');
+
+		if (DEBUG) {
+			console.log('DEBUG MODE IS ON');
+			console.log('---------------------');
+		}
 
 		//for each channel the bot is in fetch the last 100 messages
 		try {

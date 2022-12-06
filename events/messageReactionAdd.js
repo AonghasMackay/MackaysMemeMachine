@@ -36,8 +36,22 @@ module.exports = {
 
 						console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName}! +1 point to ${author.username}`);
 
-						author.send(`${reactor.username} reacted to your meme with ${emojiName}! +1 point.`);
-						reactor.send(`You reacted to ${author.username}'s meme with ${emojiName}! +1 point to ${author.username}`);
+						users.prototype.isBotMuted(author.id).then(isBotMuted => {
+							if (!isBotMuted) {
+								author.send(`${reactor.username} reacted to your meme with ${emojiName}! +1 point.`);
+							}
+						}).catch(error => {
+							writeToLogs('ERROR', error);
+						});
+
+						users.prototype.isBotMuted(reactor.id).then(isBotMuted => {
+							if (!isBotMuted) {
+								reactor.send(`You reacted to ${author.username}'s meme with ${emojiName}! +1 point to ${author.username}`);
+							}
+						}).catch(error => {
+							writeToLogs('ERROR', error);
+						});
+
 					} catch (error) {
 						writeToLogs('ERROR', error);
 					}
@@ -70,8 +84,22 @@ module.exports = {
 
 						console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName}! -1 point from ${author.username}`);
 
-						author.send(`${reactor.username} reacted to your meme with ${emojiName}! -1 point.`);
-						reactor.send(`You reacted to ${author.username}'s meme with ${emojiName}! -1 point from ${author.username}`);
+						users.prototype.isBotMuted(author.id).then(isBotMuted => {
+							if (!isBotMuted) {
+								author.send(`${reactor.username} reacted to your meme with ${emojiName}! -1 point.`);
+							}
+						}).catch(error => {
+							writeToLogs('ERROR', error);
+						});
+
+						users.prototype.isBotMuted(reactor.id).then(isBotMuted => {
+							if (!isBotMuted) {
+								reactor.send(`You reacted to ${author.username}'s meme with ${emojiName}! -1 point from ${author.username}`);
+							}
+						}).catch(error => {
+							writeToLogs('ERROR', error);
+						});
+
 					} catch (error) {
 						writeToLogs('ERROR', error);
 					}
@@ -84,7 +112,14 @@ module.exports = {
 };
 
 function sendNegativeBalanceMessages(reactor, author, emojiName) {
-	reactor.send(`Your points balance is too low to add or remove points from ${author.username}. It will reset at the end of the day.`);
+	users.prototype.isBotMuted(reactor.id).then(isBotMuted => {
+		if (!isBotMuted) {
+			reactor.send(`Your points balance is too low to add or remove points from ${author.username}. It will reset at the end of the day.`);
+		}
+	}).catch(error => {
+		writeToLogs('ERROR', error);
+	});
+
 	console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName} but their balance is too low.`);
 	return;
 }

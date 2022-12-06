@@ -123,4 +123,20 @@ Reflect.defineProperty(users.prototype, 'muteBot', {
 	},
 });
 
+Reflect.defineProperty(users.prototype, 'isBotMuted', {
+	//Returns silenced_bot value for a specific user
+	value: async user_id => {
+		const user = await users.findOne({
+			where: { user_id: user_id },
+		});
+
+		if (user) {
+			return user.silenced_bot;
+		}
+
+		writeToLogs('ERROR', 'User not found in database');
+		return false;
+	},
+});
+
 module.exports = { users, leaderboard };
