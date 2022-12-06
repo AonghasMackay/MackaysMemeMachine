@@ -1,0 +1,9 @@
+{
+	"token": "STRING",
+	"clientId": "INT",
+	"guildId": "INT",
+	"DEBUG": "BOOL",
+	"postiveEmoji": "STRING",
+	"negativeEmoji": "STRING",
+	"adminId": "INT"
+}
