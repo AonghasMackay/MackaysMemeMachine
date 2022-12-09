@@ -1,18 +1,24 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { adminId } = require('../config.json');
+const { isUserAdmin } = require('../lib/isUserAdmin.js');
 const { clearLogs } = require('../logging/logging.js');
 
+/**
+ * Clears the logs file.
+ *
+ * @param {Discord.interaction} interaction
+ */
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('clearlogs')
 		.setDescription('Clears the logs file.'),
 	async execute(interaction) {
-		if (interaction.user.id === adminId) {
-			clearLogs();
-			console.log('Logs cleared');
-			await interaction.reply('Logs cleared.');
-		} else {
+		if (!isUserAdmin(interaction.user.id)) {
 			await interaction.reply('You do not have permission to use this command.');
+			return false;
 		}
+
+		clearLogs();
+		console.log('Logs cleared');
+		await interaction.reply('Logs cleared.');
 	},
 };
