@@ -2,7 +2,6 @@
  * @todo add cronjob to save to leaderboard and reset users score
  * @todo add command to see leaderboard and user info (if bot is muted, number of scoreboards won, etc.)
  * @todo add help command to show all commands and explain how bot works
- * @todo add optional error stack trace (with Error object?) to logging
  * @todo abstract dbObjects.js out into multiple files
  * @todo move db connection details to config so its secure in future when no longer hosted locally
  * @todo comment all code
