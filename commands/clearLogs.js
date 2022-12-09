@@ -3,7 +3,7 @@ const { isUserAdmin } = require('../lib/isUserAdmin.js');
 const { clearLogs } = require('../logging/logging.js');
 
 /**
- * Clears the logs file.
+ * Admin command to clear the log file.
  *
  * @param {Discord.interaction} interaction
  */
