@@ -2,6 +2,11 @@ const { SlashCommandBuilder } = require('discord.js');
 const { isUserAdmin } = require('../lib/isUserAdmin.js');
 const { users } = require('../database/dbObjects.js');
 
+/**
+ * Admin command to reset all user balances
+ *
+ * @param {Discord.interaction} interaction
+ */
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('resetbalances')
@@ -15,6 +20,5 @@ module.exports = {
 		users.prototype.resetAllBalances();
 		console.log('Balances reset');
 		await interaction.reply('Balances reset.');
-		return;
 	},
 };
