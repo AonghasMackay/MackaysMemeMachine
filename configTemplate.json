@@ -5,5 +5,9 @@
 	"DEBUG": "BOOL",
 	"postiveEmoji": "STRING",
 	"negativeEmoji": "STRING",
-	"adminId": "INT"
+	"adminId": "INT",
+	"dbName": "STRING",
+	"dbUsername": "STRING",
+	"dbPassword": "STRING",
+	"dbHost": "STRING"
 }
