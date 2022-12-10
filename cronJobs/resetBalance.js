@@ -2,26 +2,31 @@ const CronJob = require('cron').CronJob;
 const { users } = require('../database/dbObjects.js');
 const { writeToLogs } = require('../logging/logging.js');
 
-module.exports = {
-	createResetBalanceCronJob: function() {
-		const resetBalance = new CronJob(
-			'0 59 23 * * *',
-			function() {
-				writeToLogs('INFO', 'Reset balance cron job running.');
+/**
+ * Creates the cron job that resets all user balances at midnight
+ *
+ * @returns {undefined}
+ */
+function createResetBalanceCronJob() {
+	const resetBalance = new CronJob(
+		'0 59 23 * * *',
+		function() {
+			writeToLogs('INFO', 'Reset balance cron job running.');
 
-				users.prototype.resetAllBalances();
+			users.prototype.resetAllBalances();
 
-				console.log('Reset balance cron job run.');
-				writeToLogs('INFO', 'Reset balance cron job run.');
-			},
-			null,
-			true,
-			'Europe/London',
-		);
+			console.log('Reset balance cron job run.');
+			writeToLogs('INFO', 'Reset balance cron job run.');
+		},
+		null,
+		true,
+		'Europe/London',
+	);
 
-		resetBalance.start();
+	resetBalance.start();
 
-		console.log('Reset balance cron job scheduled.');
-		writeToLogs('INFO', 'Reset balance cron job scheduled.');
-	},
-};
+	console.log('Reset balance cron job scheduled.');
+	writeToLogs('INFO', 'Reset balance cron job scheduled.');
+}
+
+module.exports = { createResetBalanceCronJob };
