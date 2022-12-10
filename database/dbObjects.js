@@ -6,7 +6,7 @@ const sequelize = new Sequelize(dbName, dbUsername, dbPassword, {
 	host: dbHost,
 	dialect: 'sqlite',
 	logging: false,
-	storage: '../database/database.sqlite',
+	storage: 'database/database.sqlite',
 });
 
 //Models must be imported after sequelize is initialized
