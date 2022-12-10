@@ -13,6 +13,11 @@ module.exports = {
 	},
 };
 
+/**
+ * Sends the scoreboard to the channel the command was sent in
+ *
+ * @param {Discord.interaction} interaction
+ */
 async function sendScoreboard(interaction) {
 	const scoreboard = await users.prototype.getScoreboard();
 	let scoreboardTable = createScoreboardTemplate();
@@ -20,41 +25,52 @@ async function sendScoreboard(interaction) {
 	writeToLogs('DEBUG', JSON.stringify(scoreboard, null, 4));
 
 	const userRows = [];
-	const userPromise = new Promise((resolve) => {
-		let i = 0;
-		scoreboard.forEach(userRecord => {
-			const idToSearch = userRecord.user_id;
-
-			//if user id is this bot then skip
-			if (idToSearch !== interaction.client.user.id) {
-
-				//get guild member based on user_id regardless of if they are cached or not
-				const guildMember = interaction.guild.members.fetch(idToSearch);
-				guildMember.then(function(member) {
-					userRows.push([member.user.username, userRecord.score, userRecord.balance]);
-					i++;
-
-					//once all users have been added to the table then resolve the promise
-					if (i === scoreboard.length) {
-						resolve();
-					}
-				});
-			} else {
-				i++;
-
-				//once all users have been added to the table then resolve the promise
-				if (i === scoreboard.length) {
-					resolve();
-				}
-			}
-		});
-	});
+	const userPromise = fillUserRows(scoreboard, interaction, userRows);
 
 	userPromise.then(() => {
 		scoreboardTable = fillScoreboardTable(scoreboardTable, userRows);
-
 		interaction.reply(scoreboardTable);
 	});
+}
+
+/**
+ * Fills the user rows ready to be inserted into the scoreboard table and then resolves the promise
+ *
+ * @param {object} scoreboard - usersByScore object from the database
+ * @param {Discord.interaction} interaction
+ * @param {Array} userRows - rows to be added to the scoreboard table
+ * @returns {Promise} - resolves when all users have been added to the usersRow array
+ */
+function fillUserRows(scoreboard, interaction, userRows) {
+	console.log(typeof scoreboard);
+	const userPromise = new Promise((resolve) => {
+		let i = 0;
+		for (const userRecord of scoreboard) {
+
+			const idToSearch = userRecord.user_id;
+			//if user is the bot then skip them
+			if (idToSearch == interaction.client.user.id) {
+				//still increment i so that the promise resolves when all users have been added to the table
+				i++;
+				continue;
+			}
+
+			//get guild member based on user_id regardless of if they are cached or not
+			const guildMember = interaction.guild.members.fetch(idToSearch);
+			guildMember.then(function(member) {
+				userRows.push([member.user.username, userRecord.score, userRecord.balance]);
+				i++;
+
+				//once all users have been added to the table then resolve the promise
+				//keep this logic inside the then function so that it only checks once all users have been added
+				if (i >= scoreboard.length) {
+					resolve();
+				}
+			});
+		}
+	});
+
+	return userPromise;
 }
 
 /**
