@@ -1,3 +1,10 @@
+/**
+ * Define the leaderboard table model
+ *
+ * @param {Sequelize} sequelize
+ * @param {Sequelize.dataTypes} DataTypes - https://sequelize.org/api/v6/variable/index.html#static-variable-DataTypes
+ * @returns {Sequelize.Model} - https://sequelize.org/api/v6/class/src/model.js~model
+ */
 module.exports = (sequelize, DataTypes) => {
 	return sequelize.define('leaderboard', {
 		date: {

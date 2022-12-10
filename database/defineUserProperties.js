@@ -4,7 +4,7 @@ const { wait } = require('../lib/wait.js');
 /**
  * Define properties for the users model
  *
- * @param {function} users
+ * @param {Sequelize.model} users
  * @returns {undefined}
  */
 function defineUsersProperties(users) {
