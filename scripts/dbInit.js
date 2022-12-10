@@ -1,5 +1,8 @@
 /**
  * @file Database initialization script
+ *
+ * Run via cli to add commands to a server
+ * navigate to parent folder and then run 'node dbInit'
  */
 const Sequelize = require('sequelize');
 const { dbName, dbUsername, dbPassword, dbHost } = require('../config.json');
