@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @file Database initialization script
  *

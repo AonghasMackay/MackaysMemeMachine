@@ -1,3 +1,5 @@
+'use strict';
+
 const { SlashCommandBuilder } = require('discord.js');
 const { isUserAdmin } = require('../lib/isUserAdmin.js');
 const { users } = require('../database/dbObjects.js');

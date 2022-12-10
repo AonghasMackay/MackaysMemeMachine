@@ -1,3 +1,5 @@
+'use strict';
+
 const { users } = require('../database/dbObjects.js');
 const { writeToLogs } = require('../logging/logging.js');
 const { DEBUG, postiveEmoji } = require('../config.json');

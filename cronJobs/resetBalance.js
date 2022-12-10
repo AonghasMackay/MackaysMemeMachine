@@ -1,3 +1,5 @@
+'use strict';
+
 const CronJob = require('cron').CronJob;
 const { users } = require('../database/dbObjects.js');
 const { writeToLogs } = require('../logging/logging.js');

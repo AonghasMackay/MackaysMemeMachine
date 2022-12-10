@@ -1,3 +1,5 @@
+'use strict';
+
 const { writeToLogs, logBotStartup } = require('../logging/logging');
 const { DEBUG } = require('../config.json');
 

@@ -2,12 +2,12 @@
  * @todo add cronjob to save to leaderboard and reset users score
  * @todo add command to see leaderboard and user info (if bot is muted, number of scoreboards won, etc.)
  * @todo add help command to show all commands and explain how bot works
- * @todo move scripts into scripts folder
- * @todo use strict?
  * @todo comment all code
  * @todo host bot online somewhere
  * @todo restart on uncaught exception
  */
+
+'use strict';
 
 const fs = require('node:fs');
 const path = require('node:path');

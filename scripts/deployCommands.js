@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @file 'Deploy commands to a guild' script
  *

@@ -1,3 +1,5 @@
+'use strict';
+
 const Sequelize = require('sequelize');
 const { defineUsersProperties } = require('./defineUserProperties.js');
 const { databaseConnection } = require('../lib/databaseConnection.js');

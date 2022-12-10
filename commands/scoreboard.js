@@ -1,8 +1,9 @@
+'use strict';
+
 const { SlashCommandBuilder } = require('discord.js');
 const { users } = require('../database/dbObjects.js');
 const { writeToLogs } = require('../logging/logging.js');
 const { AsciiTable3, AlignmentEnum } = require('ascii-table3');
-
 
 module.exports = {
 	data: new SlashCommandBuilder()

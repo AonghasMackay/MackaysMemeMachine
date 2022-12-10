@@ -1,3 +1,5 @@
+'use strict';
+
 const { users } = require('../database/dbObjects.js');
 const { SlashCommandBuilder } = require('discord.js');
 const { writeToLogs } = require('../logging/logging');

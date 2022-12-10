@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Define the leaderboard table model
  *
