@@ -65,4 +65,18 @@ function clearLogs() {
 	return;
 }
 
-module.exports = { writeToLogs,  clearLogs };
+/**
+ * Creates a line break in the logs.txt file to indicate a bot restart without using the normal log format
+ *
+ * @returns {undefined}
+ */
+function logBotStartup() {
+	fs.appendFile('logging/logs.txt', '\n------------------------------------------------------------------------ \nBOT RESTARTED \n \n', function(error) {
+		if (error) {
+			return console.log(error);
+		}
+		console.log('Log file updated');
+	});
+}
+
+module.exports = { writeToLogs,  clearLogs, logBotStartup };
