@@ -1,15 +1,15 @@
 const Sequelize = require('sequelize');
 const { writeToLogs } = require('../logging/logging.js');
-
-const sequelize = new Sequelize('database', 'username', 'password', {
-	host: 'localhost',
-	dialect: 'sqlite',
-	logging: false,
-	storage: 'database/database.sqlite',
-});
-
+const { dbName, dbUsername, dbPassword, dbHost } = require('../config.json');
 const users = require('../models/users.js')(sequelize, Sequelize.DataTypes);
 const leaderboard = require('../models/leaderboard.js')(sequelize, Sequelize.DataTypes);
+
+const sequelize = new Sequelize(dbName, dbUsername, dbPassword, {
+	host: dbHost,
+	dialect: 'sqlite',
+	logging: false,
+	storage: '../database/database.sqlite',
+});
 
 Reflect.defineProperty(users.prototype, 'addScore', {
 	value: async user_id => {
