@@ -1,13 +1,8 @@
 const Sequelize = require('sequelize');
 const { defineUsersProperties } = require('./defineUserProperties.js');
-const { dbName, dbUsername, dbPassword, dbHost } = require('../config.json');
+const { databaseConnection } = require('../lib/databaseConnection.js');
 
-const sequelize = new Sequelize(dbName, dbUsername, dbPassword, {
-	host: dbHost,
-	dialect: 'sqlite',
-	logging: false,
-	storage: 'database/database.sqlite',
-});
+const sequelize = databaseConnection();
 
 //Models must be imported after sequelize is initialized
 const users = require('../models/users.js')(sequelize, Sequelize.DataTypes);
