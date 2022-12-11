@@ -4,9 +4,9 @@ Discord bot for score keeping based on custom emoji reactions. Work in progress.
 
 ## How it works
 
-The bot is primarilly built with node, [discord.js](https://discord.js.org/#/) and [Sequelize](https://sequelize.org).
+The bot is primarilly built with node (v16.17.0), [discord.js](https://discord.js.org/#/) and [Sequelize](https://sequelize.org).
 
-Additionally it uses the [cron package](https://www.npmjs.com/package/cron) to schedule and run cron jobs and the [ascii-table3 package](https://www.npmjs.com/package/ascii-table3) to format tables.
+Additionally it uses the [cron package](https://www.npmjs.com/package/cron) to schedule and run cron jobs and the [ascii-table3 package](https://www.npmjs.com/package/ascii-table3) to format tables. A simple healthcheck is built using [Express](https://www.npmjs.com/package/express) for use with app hosting services such as Render.
 
 
 ## Features
@@ -18,6 +18,7 @@ Additionally it uses the [cron package](https://www.npmjs.com/package/cron) to s
 + The ability to mute the bot
 + Error & Info logging
 + Debug mode with increased logging and the ability to react to your own messages
++ Simple healthcheck at the endpoint /healthcheck
 
 ### Scoreboard
 ![](readmeImages/mmm-scoreboard-table.PNG)
