@@ -14,7 +14,7 @@ const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
 const { createResetBalanceCronJob } = require('./cronJobs/resetBalance.js');
-//const { createLeaderboardUpdateCronJob } = require('./cronJobs/leaderboardUpdate.js');
+const { createLeaderboardUpdateCronJob } = require('./cronJobs/leaderboardUpdate.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMembers ] });
 
 //Create a new Discord.collection for commands
@@ -27,7 +27,7 @@ const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'
 
 //Create cron jobs
 createResetBalanceCronJob();
-//createLeaderboardUpdateCronJob(client);
+createLeaderboardUpdateCronJob(client);
 
 //Import all commands
 for (const file of commandFiles) {

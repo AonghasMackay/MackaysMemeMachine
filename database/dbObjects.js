@@ -3,6 +3,7 @@
 const Sequelize = require('sequelize');
 const { defineUsersProperties } = require('./defineUsersProperties.js');
 const { databaseConnection } = require('../lib/databaseConnection.js');
+const { defineLeaderboardProperties } = require('./defineLeaderboardProperties.js');
 
 const sequelize = databaseConnection();
 
@@ -13,5 +14,7 @@ const leaderboard = require('../models/leaderboard.js')(sequelize, Sequelize.Dat
 
 //Define properties for the users model
 defineUsersProperties(users);
+//Define properties for the leaderboard model
+defineLeaderboardProperties(leaderboard);
 
 module.exports = { users, leaderboard };

@@ -140,6 +140,40 @@ function defineUsersProperties(users) {
 			return false;
 		},
 	});
+
+	Reflect.defineProperty(users.prototype, 'incrementNumberOfWins', {
+		value: async user_id => {
+			const user = await users.findOne({
+				where: { user_id: user_id },
+			});
+
+			if (user) {
+				user.number_of_wins += 1;
+				return user.save();
+			}
+
+			writeToLogs('ERROR', 'Winners user_id not found in database');
+			return false;
+		},
+	});
+
+	Reflect.defineProperty(users.prototype, 'resetAllUsers', {
+		//for each user in the database, set their balance to 5 and their score to 0
+		value: async () => {
+			const allUsers = await users.findAll();
+
+			allUsers.forEach(user => {
+				user.balance = 5;
+				user.score = 0;
+				user.save();
+			});
+
+			console.log('All balances reset');
+			writeToLogs('INFO', 'All balances reset');
+
+			return;
+		},
+	});
 }
 
 module.exports = { defineUsersProperties };

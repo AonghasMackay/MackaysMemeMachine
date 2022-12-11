@@ -6,19 +6,12 @@
  * @param {Sequelize.model} leaderboard
  * @returns {undefined}
  */
-function defineLeaderboardProperties(users) {
-	Reflect.defineProperty(users.prototype, 'addScore', {
-		value: async user_id => {
-			const user = await users.findOne({
-				where: { user_id: user_id },
-			});
+function defineLeaderboardProperties(leaderboard) {
+	Reflect.defineProperty(leaderboard.prototype, 'updateLeaderboard', {
+		value: async records => {
+			const currentTime = new Date();
 
-			if (user) {
-				user.score += 1;
-				return user.save();
-			}
-
-			return users.create({ user_id: user_id, score: 1, balance: 5, number_of_wins: 0, silenced_bot: false });
+			return leaderboard.create({ date: currentTime, winner_id: records.winnerId, runner_up_id: records.runnerUpId });
 		},
 	});
 }
