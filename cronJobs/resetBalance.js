@@ -5,7 +5,7 @@ const { users } = require('../database/dbObjects.js');
 const { writeToLogs } = require('../logging/logging.js');
 
 /**
- * Creates the cron job that resets all user balances at midnight
+ * Creates a cron job that resets all user balances at midnight
  *
  * @returns {undefined}
  */
