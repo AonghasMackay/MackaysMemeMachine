@@ -79,9 +79,6 @@ function defineUsersProperties(users) {
 				order: [['score', 'DESC']],
 			});
 
-			//wait for the users to be ordered. Bit hacky, but it works for now
-			wait(2000);
-
 			return usersByScore;
 		},
 	});

@@ -21,16 +21,37 @@ module.exports = {
  */
 async function sendScoreboard(interaction) {
 	const scoreboard = await users.prototype.getScoreboard();
-	let scoreboardTable = createScoreboardTemplate();
 
-	writeToLogs('DEBUG', JSON.stringify(scoreboard, null, 4));
+	//ensure the scoreboard is sorted before building the table rows as the database query does not always return the data sorted in time
+	const sortedScoreboardPromise = new Promise((resolve) => {
+		let i = 1;
+		scoreboard.sort(function compareRecords(a, b) {
+			//sort seems to iterate one less time than the length of the collection so we -1 from the length to ensure the promise is resolved
+			if (i >= (scoreboard.length - 1)) {
+				resolve();
+			}
 
-	const userRows = [];
-	const userPromise = fillUserRows(scoreboard, interaction, userRows);
+			i++;
 
-	userPromise.then(() => {
-		scoreboardTable = fillScoreboardTable(scoreboardTable, userRows);
-		interaction.reply(scoreboardTable);
+			if (a.score <= b.score) {
+				return 1;
+			}
+			return -1;
+		});
+	});
+
+	sortedScoreboardPromise.then(() => {
+		let scoreboardTable = createScoreboardTemplate();
+
+		writeToLogs('DEBUG', JSON.stringify(scoreboard, null, 4));
+
+		const userRows = [];
+		const userPromise = fillUserRows(scoreboard, interaction, userRows);
+
+		userPromise.then(() => {
+			scoreboardTable = fillScoreboardTable(scoreboardTable, userRows);
+			interaction.reply(scoreboardTable);
+		});
 	});
 }
 
