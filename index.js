@@ -14,6 +14,7 @@ const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
 const { createResetBalanceCronJob } = require('./cronJobs/resetBalance.js');
 const { createLeaderboardUpdateCronJob } = require('./cronJobs/leaderboardUpdate.js');
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMembers ] });
 
 //Create a new Discord.collection for commands
