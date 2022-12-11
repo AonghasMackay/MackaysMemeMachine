@@ -18,6 +18,21 @@ const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+	res.end(`Hello PID: ${process.pid}`);
+});
+
+app.get('/healthcheck', (req, res) => {
+	console.log('Health Check Request');
+	res.status(200).end();
+});
+
+app.listen(process.env.PORT);
+console.log(`Api Server running on ${process.env.PORT} port, PID: ${process.pid}`);
+
 //Create cron jobs
 createResetBalanceCronJob();
 createLeaderboardUpdateCronJob(client);
