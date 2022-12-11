@@ -7,6 +7,7 @@ const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
 const { createResetBalanceCronJob } = require('./cronJobs/resetBalance.js');
 const { createLeaderboardUpdateCronJob } = require('./cronJobs/leaderboardUpdate.js');
+const { setupHealthCheckEndpoint } = require('./lib/healthCheck.js');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMembers ] });
 
@@ -18,20 +19,8 @@ const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
-const express = require('express');
-const app = express();
-
-app.get('/', (req, res) => {
-	res.end(`Hello PID: ${process.pid}`);
-});
-
-app.get('/healthcheck', (req, res) => {
-	console.log('Health Check Request');
-	res.status(200).end();
-});
-
-app.listen(process.env.PORT);
-console.log(`Api Server running on ${process.env.PORT} port, PID: ${process.pid}`);
+//Create health check endpoint
+setupHealthCheckEndpoint();
 
 //Create cron jobs
 createResetBalanceCronJob();
