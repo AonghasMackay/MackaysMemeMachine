@@ -33,7 +33,7 @@ Additionally it uses the [cron package](https://www.npmjs.com/package/cron) to s
 
 ## Limitations
 
-As this project was designed as a side project both to learn node and for fun it is has several limitations. 
+As this project was designed as a side project to learn node it is has several limitations. 
 
 The bot is not intended for use on multiple servers and must have a primary server and admin assigned in the config. The database schema also makes no distinction between servers. This means users balances, scoreboards and the monthly leaderboard are all shared between servers. 
 
@@ -41,8 +41,10 @@ The bot is not set up to be distributed. If you wish to use or fork the bot then
 
 ## Setup
 
+**Please remember this bot was not designed to be distributed and may require some tinkering to work on other servers!**
+
 1. Create a config.json file matching the format of the configTemplate.json
-2. [Setup a bot application in the discord developer portal](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot) so that you have an api token. Some familarity with discord bot permissions will be needed
+2. [Setup a bot application in the discord developer portal](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot) so that you have an api token. Some familiarity with discord bot permissions will be needed
 3. [Add the bot to your server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links)
 4. Run the dbInit script
 5. Run the deployCommands script
