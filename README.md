@@ -42,7 +42,7 @@ The bot is not set up to be distributed. If you wish to use or fork the bot then
 ## Setup
 
 1. Create a config.json file matching the format of the configTemplate.json
-2. [Create a bot application in the discord developer portal](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot) so that you have an api token
+2. [Setup a bot application in the discord developer portal](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot) so that you have an api token. Some familarity with discord bot permissions will be needed
 3. [Add the bot to your server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links)
 4. Run the dbInit script
 5. Run the deployCommands script
