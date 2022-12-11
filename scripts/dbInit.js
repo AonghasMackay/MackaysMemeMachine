@@ -7,12 +7,13 @@
  * navigate to parent folder and then run 'node dbInit'
  */
 const Sequelize = require('sequelize');
-const { dbName, dbUsername, dbPassword, dbHost } = require('./config.json');
+const { dbName, dbUsername, dbPassword, dbHost } = require('../config.json');
 
 const sequelize = new Sequelize(dbName, dbUsername, dbPassword, {
 	host: dbHost,
 	dialect: 'sqlite',
-	storage: './database/database.sqlite',
+	logging: false,
+	storage: '../database/database.sqlite',
 });
 
 require('../models/users.js')(sequelize, Sequelize.DataTypes);
