@@ -23,8 +23,12 @@ async function sendScoreboard(interaction) {
 	const scoreboard = await users.prototype.getScoreboard();
 
 	//ensure the scoreboard is sorted before building the table rows as the database query does not always return the data sorted in time
-	const sortedScoreboardPromise = new Promise((resolve) => {
+	const sortedScoreboardPromise = new Promise((resolve, reject) => {
 		let i = 1;
+		if (scoreboard.length === 0) {
+			reject();
+		}
+
 		scoreboard.sort(function compareRecords(a, b) {
 			//sort seems to iterate one less time than the length of the collection so we -1 from the length to ensure the promise is resolved
 			if (i >= (scoreboard.length - 1)) {
@@ -52,6 +56,8 @@ async function sendScoreboard(interaction) {
 			scoreboardTable = fillScoreboardTable(scoreboardTable, userRows);
 			interaction.reply(scoreboardTable);
 		});
+	}).catch(() => {
+		interaction.reply('No scoreboard data found. Somebody react to a message to get started');
 	});
 }
 

@@ -19,7 +19,11 @@ function defineLeaderboardProperties(leaderboard) {
 		value: async () => {
 			const leaderboardRecords = await leaderboard.findAll();
 
-			return leaderboardRecords;
+			if (leaderboardRecords) {
+				return leaderboardRecords;
+			}
+
+			return false;
 		},
 	});
 }

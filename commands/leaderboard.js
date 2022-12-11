@@ -20,6 +20,7 @@ module.exports = {
  */
 async function sendLeaderboard(interaction) {
 	const leaderboardRecords = await leaderboard.prototype.getLeaderboard();
+
 	let leaderboardTable = createLeaderboardTemplate();
 
 	const leaderboardRows = [];
@@ -28,6 +29,8 @@ async function sendLeaderboard(interaction) {
 	leaderboardPromise.then(() => {
 		leaderboardTable = fillLeaderboardTable(leaderboardTable, leaderboardRows);
 		interaction.reply(leaderboardTable);
+	}).catch(() => {
+		interaction.reply('No leaderboard exists yet.');
 	});
 }
 
@@ -40,8 +43,13 @@ async function sendLeaderboard(interaction) {
  * @returns {Promise} - resolves when all records have been added to the leaderboardRows array
  */
 function fillLeaderboardRows(leaderboardRecords, interaction, leaderboardRows) {
-	const recordsPromise = new Promise((resolve) => {
+	const recordsPromise = new Promise((resolve, reject) => {
 		let i = 0;
+
+		if (leaderboardRecords.length === 0) {
+			reject();
+		}
+
 		for (const record of leaderboardRecords) {
 
 			const winnerId = record.winner_id;

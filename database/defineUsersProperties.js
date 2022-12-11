@@ -95,7 +95,11 @@ function defineUsersProperties(users) {
 				order: [['score', 'DESC']],
 			});
 
-			return usersByScore;
+			if (usersByScore) {
+				return usersByScore;
+			}
+
+			return false;
 		},
 	});
 

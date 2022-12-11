@@ -16,9 +16,15 @@ module.exports = {
  * Sends an embed with the users information
  *
  * @param {Discord.interaction} interaction
+ * @returns {undefined}
  */
 async function sendUserInfoEmbed(interaction) {
 	const user = await users.prototype.getUser(interaction.user.id);
+
+	if (!user) {
+		await interaction.reply('Couldn\'t find user in database.');
+		return;
+	}
 
 	//cast user properties to string
 	const userBalance = String(user.balance);
