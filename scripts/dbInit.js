@@ -3,8 +3,7 @@
 /**
  * @file Database initialization script
  *
- * Run via cli to add commands to a server
- * navigate to parent folder and then run 'node dbInit'
+ * Intended to be run via setup.bash script
  */
 const Sequelize = require('sequelize');
 const { dbName, dbUsername, dbPassword, dbHost } = require('../config.json');
@@ -13,7 +12,7 @@ const sequelize = new Sequelize(dbName, dbUsername, dbPassword, {
 	host: dbHost,
 	dialect: 'sqlite',
 	logging: false,
-	storage: '../database/database.sqlite',
+	storage: './database/database.sqlite',
 });
 
 require('../models/users.js')(sequelize, Sequelize.DataTypes);

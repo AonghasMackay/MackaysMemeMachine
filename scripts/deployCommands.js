@@ -3,8 +3,7 @@
 /**
  * @file 'Deploy commands to a guild' script
  *
- * Run via cli to add commands to a server
- * navigate to parent folder and then run 'node deployCommands'
+ * Intended to be run via setup.bash script
  */
 const fs = require('fs');
 const path = require('path');
