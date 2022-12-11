@@ -72,6 +72,22 @@ function defineUsersProperties(users) {
 		},
 	});
 
+	Reflect.defineProperty(users.prototype, 'getUser', {
+		value: async user_id => {
+			const user = await users.findOne({
+				where: { user_id: user_id },
+			});
+
+			if (user) {
+				return user;
+			}
+
+			writeToLogs('ERROR', 'User not found in database');
+			return false;
+		},
+	});
+
+
 	Reflect.defineProperty(users.prototype, 'getScoreboard', {
 		value: async () => {
 			//order the users by score
