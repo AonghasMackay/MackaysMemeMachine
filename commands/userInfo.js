@@ -15,7 +15,7 @@ module.exports = {
 /**
  * Sends an embed with the users information
  *
- * @param {DiscordAPIError.interaction} interaction
+ * @param {Discord.interaction} interaction
  */
 async function sendUserInfoEmbed(interaction) {
 	const user = await users.prototype.getUser(interaction.user.id);

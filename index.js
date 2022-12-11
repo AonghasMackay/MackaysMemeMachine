@@ -1,9 +1,3 @@
-/**
- * @todo add help command to show all commands and explain how bot works
- * @todo host bot online somewhere
- * @todo restart on uncaught exception
- */
-
 'use strict';
 
 //Imports

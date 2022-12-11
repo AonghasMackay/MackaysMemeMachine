@@ -2,7 +2,7 @@
 
 const { users } = require('../database/dbObjects.js');
 const { writeToLogs } = require('../logging/logging.js');
-const { DEBUG, postiveEmoji } = require('../config.json');
+const { DEBUG, positiveEmoji } = require('../config.json');
 
 module.exports = {
 	name: 'messageReactionAdd',
@@ -52,7 +52,7 @@ function alterScoreAndBalance(emojiName, author, reactor) {
 	try {
 
 		let operatorSymbol = '+';
-		if (emojiName == postiveEmoji) {
+		if (emojiName == positiveEmoji) {
 			users.prototype.addScore(author.id);
 		} else {
 			users.prototype.removeScore(author.id);

@@ -3,7 +3,7 @@
 	"clientId": "INT",
 	"guildId": "INT",
 	"DEBUG": "BOOL",
-	"postiveEmoji": "STRING",
+	"positiveEmoji": "STRING",
 	"negativeEmoji": "STRING",
 	"adminId": "INT",
 	"dbName": "STRING",
