@@ -1,5 +1,5 @@
 # MackaysMemeMachine
-Discord bot for score keeping based on custom emoji reactions. Work in progress.
+Discord bot for score keeping based on custom emoji reactions. Work in progress. Please provide credit if you fork the project
 
 
 ## How it works
