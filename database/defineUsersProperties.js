@@ -80,7 +80,7 @@ function defineUsersProperties(users) {
 			});
 
 			//wait for the users to be ordered. Bit hacky, but it works for now
-			wait(1000);
+			wait(2000);
 
 			return usersByScore;
 		},

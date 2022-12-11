@@ -14,6 +14,14 @@ function defineLeaderboardProperties(leaderboard) {
 			return leaderboard.create({ date: currentTime, winner_id: records.winnerId, runner_up_id: records.runnerUpId });
 		},
 	});
+
+	Reflect.defineProperty(leaderboard.prototype, 'getLeaderboard', {
+		value: async () => {
+			const leaderboardRecords = await leaderboard.findAll();
+
+			return leaderboardRecords;
+		},
+	});
 }
 
 module.exports = { defineLeaderboardProperties };

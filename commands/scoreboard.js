@@ -40,10 +40,9 @@ async function sendScoreboard(interaction) {
  * @param {object} scoreboard - usersByScore object from the database
  * @param {Discord.interaction} interaction
  * @param {Array} userRows - rows to be added to the scoreboard table
- * @returns {Promise} - resolves when all users have been added to the usersRow array
+ * @returns {Promise} - resolves when all users have been added to the userRows array
  */
 function fillUserRows(scoreboard, interaction, userRows) {
-	console.log(typeof scoreboard);
 	const userPromise = new Promise((resolve) => {
 		let i = 0;
 		for (const userRecord of scoreboard) {
