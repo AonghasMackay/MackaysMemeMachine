@@ -97,7 +97,7 @@ function isReactionValid(reactor, author) {
  * @returns {undefined}
  */
 function sendEventMessages(reactor, author, emojiName, operatorSymbol) {
-	console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName}!  ${operatorSymbol}1 point from ${author.username}`);
+	console.log(`${reactor.username} reacted to ${author.username}'s meme with ${emojiName}!  ${operatorSymbol}1 point for ${author.username}`);
 
 	users.prototype.isBotMuted(author.id).then(isBotMuted => {
 		if (!isBotMuted) {
@@ -109,7 +109,7 @@ function sendEventMessages(reactor, author, emojiName, operatorSymbol) {
 
 	users.prototype.isBotMuted(reactor.id).then(isBotMuted => {
 		if (!isBotMuted) {
-			reactor.send(`You reacted to ${author.username}'s meme with ${emojiName}!  ${operatorSymbol}1 point from ${author.username}`);
+			reactor.send(`You reacted to ${author.username}'s meme with ${emojiName}!  ${operatorSymbol}1 point for ${author.username}`);
 		}
 	}).catch(error => {
 		writeToLogs('ERROR', error);
@@ -129,7 +129,7 @@ function sendEventMessages(reactor, author, emojiName, operatorSymbol) {
 function sendNegativeBalanceMessages(reactor, author, emojiName) {
 	users.prototype.isBotMuted(reactor.id).then(isBotMuted => {
 		if (!isBotMuted) {
-			reactor.send(`Your points balance is too low to add or remove points from ${author.username}.  It will reset at the end of the day.`);
+			reactor.send(`Your points balance is too low to add or remove points from ${author.username}. It will reset at the end of the day.`);
 		}
 	}).catch(error => {
 		writeToLogs('ERROR', error);

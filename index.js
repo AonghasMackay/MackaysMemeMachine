@@ -1,5 +1,4 @@
 /**
- * @todo add command to see user info (if bot is muted, number of scoreboards won, etc.)
  * @todo add help command to show all commands and explain how bot works
  * @todo host bot online somewhere
  * @todo restart on uncaught exception
