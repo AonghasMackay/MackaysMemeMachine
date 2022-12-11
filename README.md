@@ -19,6 +19,8 @@ Additionally it uses the [cron package](https://www.npmjs.com/package/cron) to s
 + Error & Info logging
 + Debug mode with increased logging and the ability to react to your own messages
 
+### Console & Logging
+![](readmeImages/mmm-cli.PNG)
 
 ### Scoreboard
 ![](readmeImages/mmm-scoreboard-table.PNG)
