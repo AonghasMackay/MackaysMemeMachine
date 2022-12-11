@@ -14,10 +14,19 @@ Additionally it uses the [cron package](https://www.npmjs.com/package/cron) to s
 + Score keeping based on two custom emoji (configurable) reactions
 + A limited balance of points to be given or taken away, by each user, per day
 + Cron jobs to reset users balance per day or to assign, and record, a winner for the month and reset the scoreboard
-+ An outputable scoreboard
++ An outputable monthly scoreboard & overall leaderboard
 + The ability to mute the bot
 + Error & Info logging
 + Debug mode with increased logging and the ability to react to your own messages
+
+
+### Scoreboard
+![](readmeImages/mmm-scoreboard-table.PNG)
+![](readmeImages/mmm-scoreboard-table-output.PNG)
+
+### Leaderboard
+![](readmeImages/mmm-leaderboard-table.PNG)
+![](readmeImages/mmm-leaderboard-table-output.PNG)
 
 
 ## Limitations
