@@ -19,9 +19,6 @@ Additionally it uses the [cron package](https://www.npmjs.com/package/cron) to s
 + Error & Info logging
 + Debug mode with increased logging and the ability to react to your own messages
 
-### Console & Logging
-![](readmeImages/mmm-cli.PNG)
-
 ### Scoreboard
 ![](readmeImages/mmm-scoreboard-table.PNG)
 ![](readmeImages/mmm-scoreboard-table-output.PNG)
@@ -30,6 +27,9 @@ Additionally it uses the [cron package](https://www.npmjs.com/package/cron) to s
 ![](readmeImages/mmm-leaderboard-table.PNG)
 ![](readmeImages/mmm-leaderboard-table-output.PNG)
 
+### Console & Logging
+![](readmeImages/mmm-cli.PNG)
+![](readmeImages/mmm-logs.PNG)
 
 ## Limitations
 
@@ -38,3 +38,12 @@ As this project was designed as a side project both to learn node and for fun it
 The bot is not intended for use on multiple servers and must have a primary server and admin assigned in the config. The database schema also makes no distinction between servers. This means users balances, scoreboards and the monthly leaderboard are all shared between servers. 
 
 The bot is not set up to be distributed. If you wish to use or fork the bot then a config.json file must be provided following the configTemplate.json structure.
+
+## Setup
+
+1. Create a config.json file matching the format of the configTemplate.json
+2. [Create a bot application in the discord developer portal](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot) so that you have an api token
+3. [Add the bot to your server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links)
+4. Run the dbInit script
+5. Run the deployCommands script
+6. Navigate to the root directory and run 'node .'
