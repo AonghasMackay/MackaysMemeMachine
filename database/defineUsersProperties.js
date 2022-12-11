@@ -1,7 +1,6 @@
 'use strict';
 
 const { writeToLogs } = require('../logging/logging.js');
-const { wait } = require('../lib/wait.js');
 
 /**
  * Define properties for the users model
