@@ -40,6 +40,11 @@ The bot is not intended for use on multiple servers and must have a primary serv
 
 The bot is not set up to be distributed. If you wish to use or fork the bot then a config.json file must be provided following the configTemplate.json structure.
 
+## Known Issues
+
++ 10+ people reacting at once seems to lead to any emoji reaction being accepted although no points are awarded or removed
++ Users can react, then remove the reaction, then react again to stack points on a single post
+
 ## Setup
 
 **Please remember this bot was not designed to be distributed and may require some tinkering to work on other servers!**
