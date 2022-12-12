@@ -22,7 +22,7 @@ function messageReactionAddEventHandler(reaction) {
 	const reactor = reaction.users.cache.last();
 	const author  = reaction.message.author;
 
-	if (!isReactionValid(reactor, author)) {
+	if (!isReactionValid(reactor, author, emojiName)) {
 		return;
 	}
 
@@ -75,14 +75,19 @@ function alterScoreAndBalance(emojiName, author, reactor) {
  *
  * @param {Discord.User} reactor - the user who reacted to the message
  * @param {Discord.User} author - the author of the message
+ * @param {String} emojiName - The emoji reacted with
  * @returns {Boolean}
  */
-function isReactionValid(reactor, author) {
+function isReactionValid(reactor, author, emojiName) {
 	if (reactor.id == author.id && !DEBUG) {
 		return false;
 	}
 
 	if (author.bot) {
+		return false;
+	}
+
+	if (emojiName != positiveEmoji && emojiName != negativeEmoji) {
 		return false;
 	}
 
