@@ -42,7 +42,6 @@ The bot is not set up to be distributed. If you wish to use or fork the bot then
 
 ## Known Issues
 
-+ 10+ people reacting at once seems to lead to any emoji reaction being accepted although no points are awarded or removed
 + Users can react, then remove the reaction, then react again to stack points on a single post
 
 ## Setup
