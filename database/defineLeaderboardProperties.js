@@ -15,6 +15,12 @@ function defineLeaderboardProperties(leaderboard) {
 		},
 	});
 
+	Reflect.defineProperty(leaderboard.prototype, 'adminUpdateLeaderboard', {
+		value: async records => {
+			return leaderboard.create({ date: records.currentTime, winner_id: records.winnerId, runner_up_id: records.runnerUpId });
+		},
+	});
+
 	Reflect.defineProperty(leaderboard.prototype, 'getLeaderboard', {
 		value: async () => {
 			const leaderboardRecords = await leaderboard.findAll();
