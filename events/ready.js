@@ -1,5 +1,6 @@
 'use strict';
 
+const { ActivityType } = require('discord.js');
 const { writeToLogs, logBotStartup } = require('../logging/logging');
 const { DEBUG } = require('../config.json');
 
@@ -25,6 +26,8 @@ function readyEventHandler(client) {
 	if (DEBUG) {
 		console.log('DEBUG MODE IS ON \n---------------------');
 	}
+
+	client.user.setActivity(' you...', { type: ActivityType.Watching });
 
 	fetchLast100Messages(client);
 }
