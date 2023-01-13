@@ -23,7 +23,7 @@ module.exports = {
 };
 
 /**
- * Sends the leaderboard to the channel the command was sent in
+ * Manually updates the leaderboard table with the end date, winner and runner up ids.
  *
  * @param {Discord.interaction} interaction
  */
