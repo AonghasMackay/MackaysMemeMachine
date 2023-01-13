@@ -1,6 +1,6 @@
 node scripts/deployCommands.js
 
-if [ ! -f database/database.sqlite ]; then
+if [ ! -f /database/database.sqlite ]; then
     echo "Creating database..."
     node scripts/dbInit.js
 fi
