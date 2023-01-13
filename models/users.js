@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		silenced_bot: {
 			type: DataTypes.BOOLEAN,
-			defaultValue: false,
+			defaultValue: true,
 			allowNull: false,
 		},
 	}, {

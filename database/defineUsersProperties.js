@@ -20,7 +20,7 @@ function defineUsersProperties(users) {
 				return user.save();
 			}
 
-			return users.create({ user_id: user_id, score: 1, balance: 5, number_of_wins: 0, silenced_bot: false });
+			return users.create({ user_id: user_id, score: 1, balance: 5, number_of_wins: 0, silenced_bot: true });
 		},
 	});
 
@@ -35,7 +35,7 @@ function defineUsersProperties(users) {
 				return user.save();
 			}
 
-			return users.create({ user_id: user_id, score: -1, balance: 5, number_of_wins: 0, silenced_bot: false });
+			return users.create({ user_id: user_id, score: -1, balance: 5, number_of_wins: 0, silenced_bot: true });
 		},
 	});
 
@@ -52,7 +52,7 @@ function defineUsersProperties(users) {
 					return false;
 				}
 			}
-			return users.create({ user_id: user_id, score: 0, balance: 4, number_of_wins: 0, silenced_bot: false });
+			return users.create({ user_id: user_id, score: 0, balance: 4, number_of_wins: 0, silenced_bot: true });
 		},
 	});
 
@@ -67,7 +67,7 @@ function defineUsersProperties(users) {
 				return user.save();
 			}
 
-			return users.create({ user_id: user_id, score: 0, balance: 4, number_of_wins: 0, silenced_bot: false });
+			return users.create({ user_id: user_id, score: 0, balance: 4, number_of_wins: 0, silenced_bot: true });
 		},
 	});
 
